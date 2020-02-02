@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -29,22 +30,87 @@ public class NPCChicken : MonoBehaviour
 {
   public string Name;
   public Text TextArea;
+  public GameObject TextBox;
+  public GameObject InteractBox;
   
   [System.Serializable]
   public class Dialogue
   {
-    public string DialogueText;
-    public int NextDialogueIndex;
+    public string DialogueID;
+    [TextArea]
+    public string DialogueString;
+    public bool NeedsResponse;
   }
 
   [System.Serializable]
   public class DialogueGroup
   {
+    public string GroupID;
     public List<Dialogue> Dialogues = new List<Dialogue>();
   }
 
   public List<DialogueGroup> DialogueGroups = new List<DialogueGroup>();
 
+  public int CurrentDialogueGroup;
+  public int CurrentDialogue;
+  
+  private void Start()
+  {
+    CurrentDialogueGroup = 0;
+    CurrentDialogue = 0;
+
+    InteractBox.SetActive(true);
+    TextBox.SetActive(false);
+  }
+
+  public void Speak()
+  {
+    bool LastDialogue = (CurrentDialogue == DialogueGroups[CurrentDialogueGroup].Dialogues.Count);
+    bool NeedsResponse = DialogueGroups[CurrentDialogueGroup].Dialogues[CurrentDialogue].NeedsResponse;
+
+    InteractBox.SetActive(false);
+    TextBox.SetActive(true);
+
+    if (LastDialogue)
+    {
+      InteractBox.SetActive(true);
+      TextBox.SetActive(false);
+      CurrentDialogue = 0;
+    }
+    else //(CurrentDialogue != DialogueGroups[CurrentDialogueGroup].Dialogues.Count)  // Checks if the CurrentDialogue isn't the last one in the list
+    {
+      if (!NeedsResponse) //(!DialogueGroups[CurrentDialogueGroup].Dialogues[CurrentDialogue].NeedsResponse)
+      {
+        TextArea.text = DialogueGroups[CurrentDialogueGroup].Dialogues[CurrentDialogue].DialogueString;
+        CurrentDialogue++;
+      }
+      else
+      {
+        // * Set response button 1 and 2
+        //   * Set text on button
+        //   * Upon clicking a button:
+        //     * Set the next dialogue index (ie: currentdialogue = x)
+        //     * Call the Speak() method
+        // * Show response buttons
+      }
+    }
+  }
+
+  public void CloseTextBox()
+  {
+    TextBox.SetActive(false);
+    InteractBox.SetActive(true);
+    CurrentDialogue = 0;
+  }
 
 
+  public void ManuallySetNextDialogue(int index)
+  {
+    CurrentDialogue = index;
+  }
+
+  public void ManuallySetNextDialogueGroup(int index)
+  {
+    CurrentDialogueGroup = index;
+  }
 }
