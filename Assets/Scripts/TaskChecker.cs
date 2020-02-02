@@ -62,11 +62,13 @@ public class TaskChecker : MonoBehaviour
 
   private void OnTriggerEnter(Collider collider)
   {
-    if (collider.gameObject.name == "CoffeeMug") CoffeeGiven = true;
+    if (collider.gameObject.name == "Coffee") CoffeeGiven = true;
+    if (collider.gameObject.name == "Food") ChickenFed = true;
   }
 
   private void OnTriggerExit(Collider collider)
   {
-    if (collider.gameObject.name == "CoffeeMug") CoffeeGiven = false;
+    if (collider.gameObject.name == "Coffee") CoffeeGiven = false;
+    if (collider.gameObject.name == "Food") ChickenFed = false;
   }
 }
