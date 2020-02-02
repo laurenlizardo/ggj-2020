@@ -1179,7 +1179,7 @@ RectTransform:
   - {fileID: 1126619263}
   - {fileID: 603991798}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1529,23 +1529,33 @@ MonoBehaviour:
   NextButton: {fileID: 1466432596}
   IsSpeaking: 0
   DialogueGroups:
-  - GroupID: 
-    Dialogues:
-    - DialogueID: 
-      DialogueString: hiya neighbor! what's troubling you?
-      NeedsResponse: 0
-    - DialogueID: 
-      DialogueString: the ol' chicken is thirsty, huh? maybe some water will help.
-      NeedsResponse: 0
-  - GroupID: 
-    Dialogues: []
-  - GroupID: 
-    Dialogues: []
-  - GroupID: 
-    Dialogues: []
-  - GroupID: 
-    Dialogues: []
-  CurrentDialogueGroup: 0
+  - Dialogues:
+    - DialogueString: Tough morning, huh?
+    - DialogueString: Well, I'm not surprised! They haven't had any coffee yet!
+    - DialogueString: I hope you hatch a plan to make their morning better.
+  - Dialogues:
+    - DialogueString: Coffee wasn't the right tweetment...?
+    - DialogueString: Sorry to hear that.
+    - DialogueString: By the way, I want to tell you that your garden is looking mighty
+        dry.
+    - DialogueString: But talk is cheep!
+  - Dialogues:
+    - DialogueString: I don't mean to be n-egg-ative, but maybe your relationship
+        isn't all it was cracked up to be.
+    - DialogueString: I'm sure there's something else you can do! Are they feeling
+        peckish at all?
+    - DialogueString: Because hanger is real, my friend!
+  - Dialogues:
+    - DialogueString: Tell you what, you scratch my beak and I'll scratch yours.
+    - DialogueString: The fence near the egg-sit is broken.
+    - DialogueString: If you help me out, I'll give you something in return!
+    - DialogueString: You better scramble!
+  - Dialogues:
+    - DialogueString: Ah! The fence looks like a modern day Stone-hen-ge. Here you
+        go!
+    - DialogueString: Hope things work out with your partner!
+  - Dialogues:
+    - DialogueString: Thanks for the help, neighbor!
   CurrentDialogue: 0
 --- !u!135 &464241499
 SphereCollider:
@@ -1560,60 +1570,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &469362836
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 469362838}
-  - component: {fileID: 469362837}
-  m_Layer: 0
-  m_Name: ObjectiveManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &469362837
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 469362836}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 555ab77e64a10474fa51df1ff2f832c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObjectiveList:
-  - Text: '#1'
-    IsCompleted: 0
-  - Text: '#2'
-    IsCompleted: 0
-  - Text: '#3'
-    IsCompleted: 0
-  - Text: '#4'
-    IsCompleted: 0
-  - Text: '#5'
-    IsCompleted: 0
---- !u!4 &469362838
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 469362836}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 16
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &508150643
 GameObject:
   m_ObjectHideFlags: 0
@@ -2545,7 +2501,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &979625664
 GameObject:
@@ -2988,29 +2944,32 @@ MonoBehaviour:
   NextButton: {fileID: 42920586}
   IsSpeaking: 0
   DialogueGroups:
-  - GroupID: 
-    Dialogues:
-    - DialogueID: 
-      DialogueString: hi *bok bok*
-      NeedsResponse: 0
-    - DialogueID: 
-      DialogueString: i'm too thirsty to speak to you *bok*
-      NeedsResponse: 0
-    - DialogueID: 
-      DialogueString: oOoooOOoOoh, so parched!
-      NeedsResponse: 0
-    - DialogueID: 
-      DialogueString: '*bok bok*'
-      NeedsResponse: 0
-  - GroupID: 
-    Dialogues: []
-  - GroupID: 
-    Dialogues: []
-  - GroupID: 
-    Dialogues: []
-  - GroupID: 
-    Dialogues: []
-  CurrentDialogueGroup: 0
+  - Dialogues:
+    - DialogueString: Well, you're up rather later than usual!
+    - DialogueString: Luckily, I'm egg-noring you so it doesn't matter to me.
+    - DialogueString: '...'
+  - Dialogues:
+    - DialogueString: '...'
+    - DialogueString: This coffee is egg-ceptional.
+    - DialogueString: But don't think for one second that omeletting what you did
+        slide!
+  - Dialogues:
+    - DialogueString: How egg-citing, you watered the garden!
+    - DialogueString: You must be egg-hausted after such a grueling chore...
+    - DialogueString: HA! You crack me up. Go away.
+  - Dialogues:
+    - DialogueString: nom nom nom nom
+    - DialogueString: Egg-scue me, did you need something else?
+    - DialogueString: You're making me feel cooped up.
+    - DialogueString: Move along.
+  - Dialogues:
+    - DialogueString: Well, that was nice of you to help our neighbor with the fence.
+  - Dialogues:
+    - DialogueString: '"Shell I compare thee... to a summer''s day?"'
+    - DialogueString: You oeuf... You DID remember our anniversary!
+    - DialogueString: 'And it''s my favorite artist: Bach! *bok bok*'
+    - DialogueString: '*pecks you on the beak*'
+    - DialogueString: And that's the end!
   CurrentDialogue: 0
 --- !u!135 &1331029916
 SphereCollider:
@@ -3025,6 +2984,24 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1331029917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331029913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5895a2597cc84490eab8e47c6c66edb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentTaskIndex: 0
+  CoffeeGiven: 0
+  GardenWatered: 0
+  ChickenFed: 0
+  FenceFixed: 0
+  GiftDelivered: 0
 --- !u!1 &1350096048 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100008, guid: ce816f2e6abb0504092c23ed9b970dfd,
@@ -3171,7 +3148,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1451692472
 PrefabInstance:
