@@ -142,4 +142,9 @@ public class NPCChicken : MonoBehaviour
       CurrentDialogue = 0;
     }
   }
+
+  public void React()
+  {
+    TextArea.text = "why are you holding a " + MainChickenController.Instance.HeldItems[0] + "?";
+  }
 }

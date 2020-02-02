@@ -74,6 +74,8 @@ public class OVRGrabber : MonoBehaviour
 	protected Dictionary<OVRGrabbable, int> m_grabCandidates = new Dictionary<OVRGrabbable, int>();
 	protected bool m_operatingWithoutOVRCameraRig = true;
 
+  public OVRGrabbable GrabbedObject => m_grabbedObj; // $LL
+  
     /// <summary>
     /// The currently grabbed object.
     /// </summary>
