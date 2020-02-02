@@ -64,7 +64,7 @@ public class NPCChicken : MonoBehaviour
   public void Speak()
   {
     TaskChecker.Instance.EvaluateCurrentTask();
-    
+
     IsSpeaking = true;
 
     TextBox.SetActive(true);
@@ -76,55 +76,24 @@ public class NPCChicken : MonoBehaviour
     {
       TextArea.text = DialogueGroups[CurrentDialogueGroup].Dialogues[CurrentDialogue].DialogueString;
       CurrentDialogue++;
+
+      if (CurrentDialogueGroup == 4 && CurrentDialogue == DialogueGroups[CurrentDialogueGroup].Dialogues.Count && GiftSpawner.Instance.GiftSpawned == false)
+      {
+        GiftSpawner.Instance.SpawnGift();
+      }
     }
     else if (CurrentDialogue != DialogueGroups[CurrentDialogueGroup].Dialogues.Count && MainChickenController.Instance.HoldingItem)
     {
-      TextArea.text = "why are you holding a " + MainChickenController.Instance.HeldItems[0].name + "?";
+      TextArea.text = "Put that down before you speak to me.";
       CurrentDialogue = DialogueGroups[CurrentDialogueGroup].Dialogues.Count;
     }
     else
     {
-      TextBox.SetActive(false);
-      TalkButton.SetActive(true);
-      CurrentDialogue = 0;
-      IsSpeaking = false;
-    }
-  }
+      if (CurrentDialogueGroup == 5 && CurrentDialogue == DialogueGroups[CurrentDialogueGroup].Dialogues.Count)
+      {
+        GameSettings.Instance.CurrentGameState = GameSettings.GameState.END;
+      }
 
-  public void WithItemsResponse()
-  {
-    TextArea.text = "why are you holding a " + MainChickenController.Instance.HeldItems[0].name + "?";
-  }
-
-  public void NoItemsResponse()
-  {
-    TextBox.SetActive(true);
-    TalkButton.SetActive(false);
-
-    TextArea.text = " ";
-
-    if (CurrentDialogue != DialogueGroups[CurrentDialogueGroup].Dialogues.Count)  // Checks if the CurrentDialogue isn't the last one in the list
-    {
-      // if (!DialogueGroups[CurrentDialogueGroup].Dialogues[CurrentDialogue].NeedsResponse)
-      // {
-      //   TextArea.text = DialogueGroups[CurrentDialogueGroup].Dialogues[CurrentDialogue].DialogueString;
-      //   CurrentDialogue++;
-      // }
-      // else
-      // {
-      //   // * Set response button 1 and 2
-      //   //   * Set text on button
-      //   //   * Upon clicking a button:
-      //   //     * Set the next dialogue index (ie: currentdialogue = x)
-      //   //     * Call the Speak() method
-      //   // * Show response buttons
-      // }
-
-      TextArea.text = DialogueGroups[CurrentDialogueGroup].Dialogues[CurrentDialogue].DialogueString;
-      CurrentDialogue++;
-    }
-    else
-    {
       TextBox.SetActive(false);
       TalkButton.SetActive(true);
       CurrentDialogue = 0;

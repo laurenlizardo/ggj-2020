@@ -18,4 +18,19 @@ public class GameSettings : MonoBehaviour
   }
 
   public GameState CurrentGameState;
+  public GameObject EndScreen;
+
+  public OVRPlayerController PlayerController;
+
+  public void Update()
+  {
+    if (CurrentGameState == GameState.END)
+    {
+      EndScreen.SetActive(true);
+    }
+    else
+    {
+      EndScreen.SetActive(false);
+    }
+  }
 }

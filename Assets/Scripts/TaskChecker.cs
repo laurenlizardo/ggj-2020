@@ -41,6 +41,10 @@ public class TaskChecker : MonoBehaviour
     {
       IncrementTaskIndex();
     }
+    else if (CurrentTaskIndex == 5 && GameSettings.Instance.CurrentGameState == GameSettings.GameState.END)
+    {
+      IncrementTaskIndex();
+    }
   }
 
   private void IncrementTaskIndex()
