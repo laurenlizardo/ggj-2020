@@ -22,21 +22,17 @@ public class MainChickenController : MonoBehaviour
     _NeighborChickenVisible = (Vector3.Distance(transform.position, NeighborChicken.transform.position) <= InteractionProximity) ? true : false;
     _NeighborChickenVisible = NeighborChicken.GetComponent<Renderer>().isVisible;
 
-    if (_inLoveChickenProximity)
-    {
-      Interact(LoveChicken);
-    }
-    else if (_inNeighborChickenProximity)
-    {
-      Interact(NeighborChicken);
-    }
-  }
-
-  private void Interact(GameObject chicken)
-  {
     if (OVRInput.GetUp(OVRInput.Button.One) || OVRInput.GetUp(OVRInput.Button.Three))
+    {
+      if (Vector3.Distance(transform.position, LoveChicken.transform.position) <= InteractionProximity && LoveChicken.GetComponent<Renderer>().isVisible)
       {
-        chicken.GetComponent<NPCChicken>().Speak();
+        LoveChicken.GetComponent<NPCChicken>().Speak();
       }
+
+      if (Vector3.Distance(transform.position, NeighborChicken.transform.position) <= InteractionProximity && NeighborChicken.GetComponent<Renderer>().isVisible)
+      {
+        NeighborChicken.GetComponent<NPCChicken>().Speak();
+      }
+    }
   }
 }

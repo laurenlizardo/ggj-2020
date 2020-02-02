@@ -63,23 +63,64 @@ public class NPCChicken : MonoBehaviour
     TextBox.SetActive(false);
   }
 
+  // public void Speak()
+  // {
+  //   bool LastDialogue = (CurrentDialogue == DialogueGroups[CurrentDialogueGroup].Dialogues.Count);
+  //   bool NeedsResponse = DialogueGroups[CurrentDialogueGroup].Dialogues[CurrentDialogue].NeedsResponse;
+
+  //   InteractBox.SetActive(false);
+  //   TextBox.SetActive(true);
+
+  //   if (LastDialogue)
+  //   {
+  //     InteractBox.SetActive(true);
+  //     TextBox.SetActive(false);
+  //     CurrentDialogue = 0;
+  //   }
+  //   else if (CurrentDialogue != DialogueGroups[CurrentDialogueGroup].Dialogues.Count)  // Checks if the CurrentDialogue isn't the last one in the list
+  //   {
+  //     if (!NeedsResponse) //(!DialogueGroups[CurrentDialogueGroup].Dialogues[CurrentDialogue].NeedsResponse)
+  //     {
+  //       TextArea.text = DialogueGroups[CurrentDialogueGroup].Dialogues[CurrentDialogue].DialogueString;
+  //       CurrentDialogue++;
+  //     }
+  //     else
+  //     {
+  //       // * Set response button 1 and 2
+  //       //   * Set text on button
+  //       //   * Upon clicking a button:
+  //       //     * Set the next dialogue index (ie: currentdialogue = x)
+  //       //     * Call the Speak() method
+  //       // * Show response buttons
+  //     }
+  //   }
+  // }
+
+
+  public void ManuallySetNextDialogue(int index)
+  {
+    CurrentDialogue = index;
+  }
+
+  public void ManuallySetNextDialogueGroup(int index)
+  {
+    CurrentDialogueGroup = index;
+  }
+
   public void Speak()
   {
-    bool LastDialogue = (CurrentDialogue == DialogueGroups[CurrentDialogueGroup].Dialogues.Count);
-    bool NeedsResponse = DialogueGroups[CurrentDialogueGroup].Dialogues[CurrentDialogue].NeedsResponse;
-
-    InteractBox.SetActive(false);
-    TextBox.SetActive(true);
-
-    if (LastDialogue)
+    if (TextBox.activeSelf == false)
     {
-      InteractBox.SetActive(true);
-      TextBox.SetActive(false);
-      CurrentDialogue = 0;
+      TextBox.SetActive(true);
+      InteractBox.SetActive(false);
     }
-    else //(CurrentDialogue != DialogueGroups[CurrentDialogueGroup].Dialogues.Count)  // Checks if the CurrentDialogue isn't the last one in the list
+
+    TextArea.text = " ";
+
+    if (CurrentDialogue != DialogueGroups[CurrentDialogueGroup].Dialogues.Count)  // Checks if the CurrentDialogue isn't the last one in the list
     {
-      if (!NeedsResponse) //(!DialogueGroups[CurrentDialogueGroup].Dialogues[CurrentDialogue].NeedsResponse)
+      
+      if (!DialogueGroups[CurrentDialogueGroup].Dialogues[CurrentDialogue].NeedsResponse)
       {
         TextArea.text = DialogueGroups[CurrentDialogueGroup].Dialogues[CurrentDialogue].DialogueString;
         CurrentDialogue++;
@@ -94,23 +135,11 @@ public class NPCChicken : MonoBehaviour
         // * Show response buttons
       }
     }
-  }
-
-  public void CloseTextBox()
-  {
-    TextBox.SetActive(false);
-    InteractBox.SetActive(true);
-    CurrentDialogue = 0;
-  }
-
-
-  public void ManuallySetNextDialogue(int index)
-  {
-    CurrentDialogue = index;
-  }
-
-  public void ManuallySetNextDialogueGroup(int index)
-  {
-    CurrentDialogueGroup = index;
+    else
+    {
+      TextBox.SetActive(false);
+      InteractBox.SetActive(true);
+      CurrentDialogue = 0;
+    }
   }
 }
