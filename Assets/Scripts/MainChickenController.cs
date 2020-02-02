@@ -39,18 +39,39 @@ public class MainChickenController : MonoBehaviour
     _NeighborChickenVisible = (Vector3.Distance(transform.position, NeighborChicken.transform.position) <= InteractionProximity) ? true : false;
     _NeighborChickenVisible = NeighborChicken.GetComponent<Renderer>().isVisible;
 
-    if (OVRInput.GetUp(OVRInput.Button.One) || OVRInput.GetUp(OVRInput.Button.Three))
-    {
-      if (Vector3.Distance(transform.position, LoveChicken.transform.position) <= InteractionProximity && LoveChicken.GetComponent<Renderer>().isVisible)
-      {
-        if (!HoldingItem) LoveChicken.GetComponent<NPCChicken>().Speak();
-        else LoveChicken.GetComponent<NPCChicken>().React();
-      }
+    // if (OVRInput.GetUp(OVRInput.Button.One) || OVRInput.GetUp(OVRInput.Button.Three))
+    // {
+    //   if (Vector3.Distance(transform.position, LoveChicken.transform.position) <= InteractionProximity && LoveChicken.GetComponent<Renderer>().isVisible)
+    //   {
+    //     if (!HoldingItem) LoveChicken.GetComponent<NPCChicken>().Speak();
+    //     else LoveChicken.GetComponent<NPCChicken>().React();
+    //   }
 
-      if (Vector3.Distance(transform.position, NeighborChicken.transform.position) <= InteractionProximity && NeighborChicken.GetComponent<Renderer>().isVisible)
-      {
-        NeighborChicken.GetComponent<NPCChicken>().Speak();
-      }
+    //   if (Vector3.Distance(transform.position, NeighborChicken.transform.position) <= InteractionProximity && NeighborChicken.GetComponent<Renderer>().isVisible)
+    //   {
+    //     NeighborChicken.GetComponent<NPCChicken>().Speak();
+    //   }
+    // }
+
+    if (Vector3.Distance(transform.position, LoveChicken.transform.position) <= InteractionProximity && !LoveChicken.GetComponent<NPCChicken>().IsSpeaking)// && LoveChicken.GetComponent<Renderer>().isVisible)
+    {
+      LoveChicken.GetComponent<NPCChicken>().TalkButton.SetActive(true);
+      //if (!HoldingItem) LoveChicken.GetComponent<NPCChicken>().Speak();
+      //else LoveChicken.GetComponent<NPCChicken>().React();
+    }
+    else
+    {
+      LoveChicken.GetComponent<NPCChicken>().TalkButton.SetActive(false);
+    }
+
+    if (Vector3.Distance(transform.position, NeighborChicken.transform.position) <= InteractionProximity && !NeighborChicken.GetComponent<NPCChicken>().IsSpeaking)// && NeighborChicken.GetComponent<Renderer>().isVisible)
+    {
+      NeighborChicken.GetComponent<NPCChicken>().TalkButton.SetActive(true);
+      //NeighborChicken.GetComponent<NPCChicken>().Speak();
+    }
+    else
+    {
+      NeighborChicken.GetComponent<NPCChicken>().TalkButton.SetActive(false);
     }
 
     if(LeftGrabber.GetComponent<OVRGrabber>().GrabbedObject == null && RightGrabber.GetComponent<OVRGrabber>().GrabbedObject == null) HoldingItem = false;

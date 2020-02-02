@@ -30,8 +30,10 @@ public class NPCChicken : MonoBehaviour
 {
   public string Name;
   public Text TextArea;
+  public GameObject TalkButton;
   public GameObject TextBox;
-  public GameObject InteractBox;
+  public GameObject NextButton;
+  public bool IsSpeaking;
   
   [System.Serializable]
   public class Dialogue
@@ -59,43 +61,9 @@ public class NPCChicken : MonoBehaviour
     CurrentDialogueGroup = 0;
     CurrentDialogue = 0;
 
-    InteractBox.SetActive(true);
+    TalkButton.SetActive(true);
     TextBox.SetActive(false);
   }
-
-  // public void Speak()
-  // {
-  //   bool LastDialogue = (CurrentDialogue == DialogueGroups[CurrentDialogueGroup].Dialogues.Count);
-  //   bool NeedsResponse = DialogueGroups[CurrentDialogueGroup].Dialogues[CurrentDialogue].NeedsResponse;
-
-  //   InteractBox.SetActive(false);
-  //   TextBox.SetActive(true);
-
-  //   if (LastDialogue)
-  //   {
-  //     InteractBox.SetActive(true);
-  //     TextBox.SetActive(false);
-  //     CurrentDialogue = 0;
-  //   }
-  //   else if (CurrentDialogue != DialogueGroups[CurrentDialogueGroup].Dialogues.Count)  // Checks if the CurrentDialogue isn't the last one in the list
-  //   {
-  //     if (!NeedsResponse) //(!DialogueGroups[CurrentDialogueGroup].Dialogues[CurrentDialogue].NeedsResponse)
-  //     {
-  //       TextArea.text = DialogueGroups[CurrentDialogueGroup].Dialogues[CurrentDialogue].DialogueString;
-  //       CurrentDialogue++;
-  //     }
-  //     else
-  //     {
-  //       // * Set response button 1 and 2
-  //       //   * Set text on button
-  //       //   * Upon clicking a button:
-  //       //     * Set the next dialogue index (ie: currentdialogue = x)
-  //       //     * Call the Speak() method
-  //       // * Show response buttons
-  //     }
-  //   }
-  // }
-
 
   public void ManuallySetNextDialogue(int index)
   {
@@ -109,11 +77,41 @@ public class NPCChicken : MonoBehaviour
 
   public void Speak()
   {
-    if (TextBox.activeSelf == false)
+    IsSpeaking = true;
+
+    TextBox.SetActive(true);
+    TalkButton.SetActive(false);
+
+    TextArea.text = " ";
+
+    if (CurrentDialogue != DialogueGroups[CurrentDialogueGroup].Dialogues.Count && !MainChickenController.Instance.HoldingItem)  // Checks if the CurrentDialogue isn't the last one in the list
     {
-      TextBox.SetActive(true);
-      InteractBox.SetActive(false);
+      TextArea.text = DialogueGroups[CurrentDialogueGroup].Dialogues[CurrentDialogue].DialogueString;
+      CurrentDialogue++;
     }
+    else if (CurrentDialogue != DialogueGroups[CurrentDialogueGroup].Dialogues.Count && MainChickenController.Instance.HoldingItem)
+    {
+      TextArea.text = "why are you holding a " + MainChickenController.Instance.HeldItems[0].name + "?";
+      CurrentDialogue = DialogueGroups[CurrentDialogueGroup].Dialogues.Count;
+    }
+    else
+    {
+      TextBox.SetActive(false);
+      TalkButton.SetActive(true);
+      CurrentDialogue = 0;
+      IsSpeaking = false;
+    }
+  }
+
+  public void WithItemsResponse()
+  {
+    TextArea.text = "why are you holding a " + MainChickenController.Instance.HeldItems[0].name + "?";
+  }
+
+  public void NoItemsResponse()
+  {
+    TextBox.SetActive(true);
+    TalkButton.SetActive(false);
 
     TextArea.text = " ";
 
@@ -138,13 +136,9 @@ public class NPCChicken : MonoBehaviour
     else
     {
       TextBox.SetActive(false);
-      InteractBox.SetActive(true);
+      TalkButton.SetActive(true);
       CurrentDialogue = 0;
+      IsSpeaking = false;
     }
-  }
-
-  public void React()
-  {
-    TextArea.text = "why are you holding a " + MainChickenController.Instance.HeldItems[0] + "?";
   }
 }
