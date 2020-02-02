@@ -38,45 +38,33 @@ public class NPCChicken : MonoBehaviour
   [System.Serializable]
   public class Dialogue
   {
-    public string DialogueID;
     [TextArea]
     public string DialogueString;
-    public bool NeedsResponse;
   }
 
   [System.Serializable]
   public class DialogueGroup
   {
-    public string GroupID;
     public List<Dialogue> Dialogues = new List<Dialogue>();
   }
 
   public List<DialogueGroup> DialogueGroups = new List<DialogueGroup>();
 
-  public int CurrentDialogueGroup;
+  public int CurrentDialogueGroup => TaskChecker.Instance.CurrentTaskIndex;
   public int CurrentDialogue;
   
   private void Start()
   {
-    CurrentDialogueGroup = 0;
     CurrentDialogue = 0;
 
     TalkButton.SetActive(true);
     TextBox.SetActive(false);
   }
 
-  public void ManuallySetNextDialogue(int index)
-  {
-    CurrentDialogue = index;
-  }
-
-  public void ManuallySetNextDialogueGroup(int index)
-  {
-    CurrentDialogueGroup = index;
-  }
-
   public void Speak()
   {
+    TaskChecker.Instance.EvaluateCurrentTask();
+    
     IsSpeaking = true;
 
     TextBox.SetActive(true);
@@ -117,21 +105,23 @@ public class NPCChicken : MonoBehaviour
 
     if (CurrentDialogue != DialogueGroups[CurrentDialogueGroup].Dialogues.Count)  // Checks if the CurrentDialogue isn't the last one in the list
     {
-      
-      if (!DialogueGroups[CurrentDialogueGroup].Dialogues[CurrentDialogue].NeedsResponse)
-      {
-        TextArea.text = DialogueGroups[CurrentDialogueGroup].Dialogues[CurrentDialogue].DialogueString;
-        CurrentDialogue++;
-      }
-      else
-      {
-        // * Set response button 1 and 2
-        //   * Set text on button
-        //   * Upon clicking a button:
-        //     * Set the next dialogue index (ie: currentdialogue = x)
-        //     * Call the Speak() method
-        // * Show response buttons
-      }
+      // if (!DialogueGroups[CurrentDialogueGroup].Dialogues[CurrentDialogue].NeedsResponse)
+      // {
+      //   TextArea.text = DialogueGroups[CurrentDialogueGroup].Dialogues[CurrentDialogue].DialogueString;
+      //   CurrentDialogue++;
+      // }
+      // else
+      // {
+      //   // * Set response button 1 and 2
+      //   //   * Set text on button
+      //   //   * Upon clicking a button:
+      //   //     * Set the next dialogue index (ie: currentdialogue = x)
+      //   //     * Call the Speak() method
+      //   // * Show response buttons
+      // }
+
+      TextArea.text = DialogueGroups[CurrentDialogueGroup].Dialogues[CurrentDialogue].DialogueString;
+      CurrentDialogue++;
     }
     else
     {
