@@ -60,13 +60,13 @@ public class TaskChecker : MonoBehaviour
     }
   }
 
-  private void OnCollisionEnter(Collision collision)
+  private void OnTriggerEnter(Collider collider)
   {
-    if (collision.gameObject.name == "CoffeeMug") CoffeeGiven = true;
+    if (collider.gameObject.name == "CoffeeMug") CoffeeGiven = true;
   }
 
-  private void OnCollisionExit(Collision collision)
+  private void OnTriggerExit(Collider collider)
   {
-    if (collision.gameObject.name == "CoffeeMug") CoffeeGiven = false;
+    if (collider.gameObject.name == "CoffeeMug") CoffeeGiven = false;
   }
 }
