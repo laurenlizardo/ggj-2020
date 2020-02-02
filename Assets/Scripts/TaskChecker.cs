@@ -59,4 +59,14 @@ public class TaskChecker : MonoBehaviour
       else if (CoffeeGiven && GardenWatered && ChickenFed && FenceFixed && !GiftDelivered) GiftDelivered = true;
     }
   }
+
+  private void OnCollisionEnter(Collision collision)
+  {
+    if (collision.gameObject.name == "CoffeeMug") CoffeeGiven = true;
+  }
+
+  private void OnCollisionExit(Collision collision)
+  {
+    if (collision.gameObject.name == "CoffeeMug") CoffeeGiven = false;
+  }
 }
