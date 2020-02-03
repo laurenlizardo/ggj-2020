@@ -19,6 +19,9 @@ public class TaskChecker : MonoBehaviour
   public bool FenceFixed;
   public bool GiftDelivered;
 
+  public GameObject Fence1;
+  public GameObject Fence2;
+
   public void EvaluateCurrentTask()
   {
     if (CurrentTaskIndex == 0 && CoffeeGiven)
@@ -61,6 +64,14 @@ public class TaskChecker : MonoBehaviour
       else if (CoffeeGiven && GardenWatered && !ChickenFed) ChickenFed = true;
       else if (CoffeeGiven && GardenWatered && ChickenFed && !FenceFixed) FenceFixed = true;
       else if (CoffeeGiven && GardenWatered && ChickenFed && FenceFixed && !GiftDelivered) GiftDelivered = true;
+    }
+
+    if (FenceFixed)
+    {
+      Fence1.transform.localPosition = new Vector3(.2f, .55f, 0);
+      Fence1.transform.localRotation = Quaternion.Euler(0, 360, 0);
+      Fence2.transform.localPosition = new Vector3(.2f, .9f, 0);
+      Fence2.transform.localRotation = Quaternion.Euler(0, 360, 0);
     }
   }
 
