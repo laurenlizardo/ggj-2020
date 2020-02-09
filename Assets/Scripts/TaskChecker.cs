@@ -68,10 +68,10 @@ public class TaskChecker : MonoBehaviour
 
     if (FenceFixed)
     {
-      Fence1.transform.localPosition = new Vector3(.2f, .55f, 0);
-      Fence1.transform.localRotation = Quaternion.Euler(0, 360, 0);
-      Fence2.transform.localPosition = new Vector3(.2f, .9f, 0);
-      Fence2.transform.localRotation = Quaternion.Euler(0, 360, 0);
+      // Fence1.transform.localPosition = new Vector3(.2f, .55f, 0);
+      // Fence1.transform.localRotation = Quaternion.Euler(0, 360, 0);
+      // Fence2.transform.localPosition = new Vector3(.2f, .9f, 0);
+      // Fence2.transform.localRotation = Quaternion.Euler(0, 360, 0);
     }
   }
 
