@@ -65,14 +65,6 @@ public class TaskChecker : MonoBehaviour
       else if (CoffeeGiven && GardenWatered && ChickenFed && !FenceFixed) FenceFixed = true;
       else if (CoffeeGiven && GardenWatered && ChickenFed && FenceFixed && !GiftDelivered) GiftDelivered = true;
     }
-
-    if (FenceFixed)
-    {
-      // Fence1.transform.localPosition = new Vector3(.2f, .55f, 0);
-      // Fence1.transform.localRotation = Quaternion.Euler(0, 360, 0);
-      // Fence2.transform.localPosition = new Vector3(.2f, .9f, 0);
-      // Fence2.transform.localRotation = Quaternion.Euler(0, 360, 0);
-    }
   }
 
   private void OnTriggerEnter(Collider collider)
@@ -80,12 +72,5 @@ public class TaskChecker : MonoBehaviour
     if (collider.gameObject.name == "Coffee") CoffeeGiven = true;
     if (collider.gameObject.tag == "Food") ChickenFed = true;
     if (collider.gameObject.name == "Gift") GiftDelivered = true;
-  }
-
-  private void OnTriggerExit(Collider collider)
-  {
-    if (collider.gameObject.name == "Coffee") CoffeeGiven = false;
-    if (collider.gameObject.tag == "Food") ChickenFed = false;
-    if (collider.gameObject.name == "Gift") GiftDelivered = false;
   }
 }
