@@ -76,7 +76,11 @@ public class NPCChicken : MonoBehaviour
     {
       TextArea.text = DialogueGroups[CurrentDialogueGroup].Dialogues[CurrentDialogue].DialogueString;
       CurrentDialogue++;
-
+      if (CurrentDialogueGroup == 3 && CurrentDialogue == 3 && TaskChecker.Instance.FenceFixed == false)
+      {
+        TaskChecker.Instance.Fence1.GetComponent<FenceRailCollider>().BreakFence();
+        TaskChecker.Instance.Fence2.GetComponent<FenceRailCollider>().BreakFence();
+      }
       if (CurrentDialogueGroup == 4 && CurrentDialogue == DialogueGroups[CurrentDialogueGroup].Dialogues.Count && GiftSpawner.Instance.GiftSpawned == false)
       {
         GiftSpawner.Instance.SpawnGift();

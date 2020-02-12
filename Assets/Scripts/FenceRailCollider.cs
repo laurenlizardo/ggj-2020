@@ -16,22 +16,19 @@ public class FenceRailCollider : MonoBehaviour
 
   private void Update()
   {
-    if (TaskChecker.Instance.CurrentTaskIndex == 4)
-    {
-      if (!TaskChecker.Instance.FenceFixed)
-      {
-        GetComponent<Rigidbody>().isKinematic = false;
-        transform.localPosition = FenceRailTransformBroken.localPosition;
-        transform.localRotation = FenceRailTransformBroken.localRotation;
-      }
-    }
-
     if (TaskChecker.Instance.FenceFixed)
     {
       transform.localPosition = FenceRailTransform.localPosition;
       transform.localRotation = FenceRailTransform.localRotation;
       GetComponent<Rigidbody>().isKinematic = true;
     }
+  }
+
+  public void BreakFence()
+  {
+    GetComponent<Rigidbody>().isKinematic = false;
+    transform.localPosition = FenceRailTransformBroken.localPosition;
+    transform.localRotation = FenceRailTransformBroken.localRotation;
   }
 
   private void OnTriggerEnter(Collider collider)

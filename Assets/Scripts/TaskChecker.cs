@@ -35,6 +35,10 @@ public class TaskChecker : MonoBehaviour
     else if (CurrentTaskIndex == 2 && ChickenFed)
     {
       IncrementTaskIndex();
+      
+      // Break fence here
+      // Fence1.GetComponent<FenceRailCollider>().BreakFence();
+      // Fence2.GetComponent<FenceRailCollider>().BreakFence();
     }
     else if (CurrentTaskIndex == 3 && FenceFixed)
     {
