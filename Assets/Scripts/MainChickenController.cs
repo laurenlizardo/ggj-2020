@@ -17,8 +17,8 @@ public class MainChickenController : Singleton<MainChickenController>
   private bool _inNeighborChickenProximity;
   private bool _isNeighborChickenVisible;
 
-  public GameObject LeftHandGrabber;
-  public GameObject RightHandGrabber;
+  public GameObject LeftHandAnchor;
+  public GameObject RightHandAnchor;
 
   public bool IsHoldingItem;
   public List<GameObject> HeldItems = new List<GameObject>();
@@ -51,13 +51,13 @@ public class MainChickenController : Singleton<MainChickenController>
     }
 
 // ITEM CHECKING
-    if(LeftHandGrabber.GetComponent<OVRGrabber>().GrabbedObject == null && RightHandGrabber.GetComponent<OVRGrabber>().GrabbedObject == null) IsHoldingItem = false;
-    else if (LeftHandGrabber.GetComponent<OVRGrabber>().GrabbedObject != null || RightHandGrabber.GetComponent<OVRGrabber>().GrabbedObject != null) IsHoldingItem = true;
+    if(LeftHandAnchor.GetComponent<OVRGrabber>().GrabbedObject == null && RightHandAnchor.GetComponent<OVRGrabber>().GrabbedObject == null) IsHoldingItem = false;
+    else if (LeftHandAnchor.GetComponent<OVRGrabber>().GrabbedObject != null || RightHandAnchor.GetComponent<OVRGrabber>().GrabbedObject != null) IsHoldingItem = true;
 
     if (IsHoldingItem)
     {
-      if (LeftHandGrabber.GetComponent<OVRGrabber>().GrabbedObject != null) HeldItems.Add(LeftHandGrabber.GetComponent<OVRGrabber>().GrabbedObject.gameObject);
-      if (RightHandGrabber.GetComponent<OVRGrabber>().GrabbedObject != null) HeldItems.Add(RightHandGrabber.GetComponent<OVRGrabber>().GrabbedObject.gameObject);
+      if (LeftHandAnchor.GetComponent<OVRGrabber>().GrabbedObject != null) HeldItems.Add(LeftHandAnchor.GetComponent<OVRGrabber>().GrabbedObject.gameObject);
+      if (RightHandAnchor.GetComponent<OVRGrabber>().GrabbedObject != null) HeldItems.Add(RightHandAnchor.GetComponent<OVRGrabber>().GrabbedObject.gameObject);
     }
     else
     {
