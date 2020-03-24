@@ -2,15 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TaskChecker : MonoBehaviour
+public class TaskChecker : Singleton<TaskChecker>
 {
-  private static TaskChecker _instance;
-  public static TaskChecker Instance => _instance;
-
-  private void Awake()
-  {
-    _instance = this;
-  }
 
   public int CurrentTaskIndex = 0;
   public bool CoffeeGiven;
