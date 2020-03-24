@@ -2,16 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GiftSpawner : MonoBehaviour
+public class GiftSpawner : Singleton<GiftSpawner>
 {
-  private static GiftSpawner _instance;
-  public static GiftSpawner Instance => _instance;
-
-  private void Awake()
-  {
-    _instance = this;
-  }
-
   public GameObject Gift;
   public Transform Spawnpoint;
   public bool GiftSpawned;
