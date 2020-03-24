@@ -4,28 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-  // * DialogueGroups (each group corresponds to the current objective);
-  //   * DialogueGroup
-  //     * dialogue
-  //     * dialogue
-  //     * dialogue
-  //     * dialogue
-  //     * dialogue
-  //     * dialogue
-  //     * dialogue
-  //   * DialogueGroup
-  //     * dialogue
-  //     * dialogue
-  //     * dialogue
-  //   * DialogueGroup
-  //     * dialogue
-  //     * dialogue
-  //     * dialogue
-  //   * DialogueGroup
-  //     * dialogue
-  //     * dialogue
-  //     * dialogue
-
 public class NPCChicken : MonoBehaviour
 {
   public string Name;
@@ -72,7 +50,7 @@ public class NPCChicken : MonoBehaviour
 
     TextArea.text = " ";
 
-    if (CurrentDialogue != DialogueGroups[CurrentDialogueGroup].Dialogues.Count && !MainChickenController.Instance.HoldingItem)  // Checks if the CurrentDialogue isn't the last one in the list
+    if (CurrentDialogue != DialogueGroups[CurrentDialogueGroup].Dialogues.Count && !MainChickenController.Instance.IsHoldingItem)  // Checks if the CurrentDialogue isn't the last one in the list
     {
       TextArea.text = DialogueGroups[CurrentDialogueGroup].Dialogues[CurrentDialogue].DialogueString;
       CurrentDialogue++;
@@ -86,7 +64,7 @@ public class NPCChicken : MonoBehaviour
         GiftSpawner.Instance.SpawnGift();
       }
     }
-    else if (CurrentDialogue != DialogueGroups[CurrentDialogueGroup].Dialogues.Count && MainChickenController.Instance.HoldingItem)
+    else if (CurrentDialogue != DialogueGroups[CurrentDialogueGroup].Dialogues.Count && MainChickenController.Instance.IsHoldingItem)
     {
       TextArea.text = "Put that down before you speak to me.";
       CurrentDialogue = DialogueGroups[CurrentDialogueGroup].Dialogues.Count;
