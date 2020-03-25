@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TaskChecker : Singleton<TaskChecker>
+public class TaskManager : Singleton<TaskManager>
 {
 
   public int CurrentTaskIndex = 0;
