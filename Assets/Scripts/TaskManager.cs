@@ -28,10 +28,6 @@ public class TaskManager : Singleton<TaskManager>
     else if (CurrentTaskIndex == 2 && ChickenFed)
     {
       IncrementTaskIndex();
-      
-      // Break fence here
-      // Fence1.GetComponent<FenceRailCollider>().BreakFence();
-      // Fence2.GetComponent<FenceRailCollider>().BreakFence();
     }
     else if (CurrentTaskIndex == 3 && FenceFixed)
     {
@@ -54,6 +50,7 @@ public class TaskManager : Singleton<TaskManager>
 
   private void Update()
   {
+    // For testing purposes only
     if (OVRInput.GetUp(OVRInput.Button.One))
     {
       if (!CoffeeGiven) CoffeeGiven = true;
@@ -64,10 +61,5 @@ public class TaskManager : Singleton<TaskManager>
     }
   }
 
-  private void OnTriggerEnter(Collider collider)
-  {
-    if (collider.gameObject.name == "Coffee") CoffeeGiven = true;
-    if (collider.gameObject.tag == "Food") ChickenFed = true;
-    if (collider.gameObject.name == "Gift") GiftDelivered = true;
-  }
+  
 }

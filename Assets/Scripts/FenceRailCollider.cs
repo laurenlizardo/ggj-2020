@@ -16,7 +16,7 @@ public class FenceRailCollider : MonoBehaviour
 
   private void Update()
   {
-    if (TaskChecker.Instance.FenceFixed)
+    if (TaskManager.Instance.FenceFixed)
     {
       transform.localPosition = FenceRailTransform.localPosition;
       transform.localRotation = FenceRailTransform.localRotation;
@@ -33,6 +33,6 @@ public class FenceRailCollider : MonoBehaviour
 
   private void OnTriggerEnter(Collider collider)
   {
-    if (collider.gameObject.name == "Hammer") TaskChecker.Instance.FenceFixed = true;
+    if (collider.gameObject.name == "Hammer") TaskManager.Instance.FenceFixed = true;
   }
 }

@@ -28,7 +28,7 @@ public class NPCChicken : MonoBehaviour
 
   public List<DialogueGroup> DialogueGroups = new List<DialogueGroup>();
 
-  public int CurrentDialogueGroup => TaskChecker.Instance.CurrentTaskIndex;
+  public int CurrentDialogueGroup => TaskManager.Instance.CurrentTaskIndex;
   public int CurrentDialogue;
   
   private void Start()
@@ -41,7 +41,7 @@ public class NPCChicken : MonoBehaviour
 
   public void Speak()
   {
-    TaskChecker.Instance.EvaluateCurrentTask();
+    TaskManager.Instance.EvaluateCurrentTask();
 
     IsSpeaking = true;
 
@@ -54,10 +54,10 @@ public class NPCChicken : MonoBehaviour
     {
       TextArea.text = DialogueGroups[CurrentDialogueGroup].Dialogues[CurrentDialogue].DialogueString;
       CurrentDialogue++;
-      if (CurrentDialogueGroup == 3 && CurrentDialogue == 3 && TaskChecker.Instance.FenceFixed == false)
+      if (CurrentDialogueGroup == 3 && CurrentDialogue == 3 && TaskManager.Instance.FenceFixed == false)
       {
-        TaskChecker.Instance.Fence1.GetComponent<FenceRailCollider>().BreakFence();
-        TaskChecker.Instance.Fence2.GetComponent<FenceRailCollider>().BreakFence();
+        TaskManager.Instance.Fence1.GetComponent<FenceRailCollider>().BreakFence();
+        TaskManager.Instance.Fence2.GetComponent<FenceRailCollider>().BreakFence();
       }
       if (CurrentDialogueGroup == 4 && CurrentDialogue == DialogueGroups[CurrentDialogueGroup].Dialogues.Count && GiftSpawner.Instance.GiftSpawned == false)
       {
